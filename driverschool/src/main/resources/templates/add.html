@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>顺风搬家预约登记</title>
+    <link rel="stylesheet" href="../static/layui-v2.5.5/layui/css/layui.css">
+    <script src="../static/layui-v2.5.5/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+<form class="layui-form" id="formId" style="width: 500px; margin: 20px auto;" method="put">
+    <h1>顺风搬家预约登记</h1>
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----顺风搬家，一路顺风</h3>
+    <div>&nbsp;</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">起始地区：</label>
+            <div class="layui-input-block">
+                <select name="area" lay-filter="aihao">
+                    <option value="0">海淀区</option>
+                    <option value="1" selected="">朝阳区</option>
+                    <option value="2">西城区</option>
+                    <option value="3">东城区</option>
+                    <option value="4">丰台区</option>
+                    <option value="5">大兴区及石景山</option>
+                </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">所用车型：</label>
+        <div class="layui-input-block">
+            <input type="radio" name="cartype" value="金杯" title="金杯" checked="">
+            <input type="radio" name="cartype" value="皮卡" title="皮卡">
+            <input type="radio" name="cartype" value="厢式货车" title="厢式货车">
+            <input type="radio" name="cartype" value="1041货车" title="1041货车">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">搬家日期：</label>
+        <div class="layui-input-block">
+            <input type="text" name="movedate" lay-verify="movedate" autocomplete="off" class="layui-input">日期格式如：2019-12-30
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人：</label>
+        <div class="layui-input-block">
+            <input type="text" name="contact" lay-verify="contact" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系电话：</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone" lay-verify="phone" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">预约登记</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['form','jquery','layer'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        form.on('submit(demo1)', function (data) {
+            $.ajax({
+                url: '/user/appointmentRegistration',
+                type: 'put',
+                data: $("#formId").serialize(),
+                success: function (data) {
+                    alert(data)
+                },
+                error: function (res) {
+                    alert(res.status)
+                }
+
+            });
+        });
+
+    });
+</script>
+</body>
+</html>

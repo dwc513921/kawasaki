@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>顺风搬家预约登记</title>
+    <link rel="stylesheet" href="../static/layui-v2.5.5/layui/css/layui.css">
+    <script src="../static/layui-v2.5.5/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+<form class="layui-form" id="formId" style="width: 500px; margin: 20px auto;" method="get">
+    <h1>顺风搬家预约登记</h1>
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----顺风搬家，一路顺风</h3>
+    <div>&nbsp;</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">起始地区：</label>
+        <div class="layui-input-block">
+            <input type="text" name="movedate" lay-verify="movedate" autocomplete="off" class="layui-input" th:value="${moveBooking.area}" readonly unselectable="on">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">所用车型：</label>
+        <div class="layui-input-block">
+            <input type="text" name="movedate" lay-verify="movedate" autocomplete="off" class="layui-input" th:value="${moveBooking.cartype}" readonly unselectable="on">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">搬家日期：</label>
+        <div class="layui-input-block">
+            <input type="text" name="movedate" lay-verify="movedate" autocomplete="off" class="layui-input" th:value="${moveBooking.movedate}" readonly unselectable="on">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人：</label>
+        <div class="layui-input-block">
+            <input type="text" name="movedate" lay-verify="movedate" autocomplete="off" class="layui-input" th:value="${moveBooking.contact}" readonly unselectable="on">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系电话：</label>
+        <div class="layui-input-block">
+            <input type="text" name="movedate" lay-verify="movedate" autocomplete="off" class="layui-input" th:value="${moveBooking.phone}" readonly unselectable="on">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态：</label>
+        <div class="layui-input-block">
+            <input type="text" name="movedate" lay-verify="movedate" autocomplete="off" class="layui-input" th:if="${moveBooking.status == 0}" th:value="未处理" readonly unselectable="on">
+            <input type="text" name="movedate" lay-verify="movedate" autocomplete="off" class="layui-input" th:if="${moveBooking.status == 1}" th:value="已派车" readonly unselectable="on">
+            <input type="text" name="movedate" lay-verify="movedate" autocomplete="off" class="layui-input" th:if="${moveBooking.status == 2}" th:value="已结束" readonly unselectable="on">
+        </div>
+    </div>
+</form>
+</body>
+</html>

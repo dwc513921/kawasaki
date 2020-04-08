@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/layui-v2.5.5/layui/css/layui.css">
+    <script src="../static/layui-v2.5.5/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+<form class="layui-form" id="formId" style="width: 500px; margin: 20px auto;" method="get">
+    <h1>驾校信息修改</h1>
+    <div>&nbsp;</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">驾校名称：</label>
+        <div class="layui-input-block">
+            <input type="hidden" name="id" th:value="${driverSchool.id}">
+            <input type="text" name="name" lay-verify="movedate" autocomplete="off" class="layui-input" th:value="${driverSchool.name}" >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">所在区域：</label>
+        <div class="layui-input-block">
+            <select name="cityAreaId" lay-verify="required" lay-search="" th:if="${driverSchool.cityAreaId == 1}">
+                <option th:value="1" selected>朝阳县</option>
+                <option th:value="2">杜鹃路</option>
+                <option th:value="3">石景山</option>
+                <option th:value="4">大兴区</option>
+            </select>
+            <select name="cityAreaId" lay-verify="required" lay-search="" th:if="${driverSchool.cityAreaId == 2}">
+                <option th:value="1">朝阳县</option>
+                <option th:value="2" selected>杜鹃路</option>
+                <option th:value="3">石景山</option>
+                <option th:value="4">大兴区</option>
+            </select>
+            <select name="cityAreaId" lay-verify="required" lay-search="" th:if="${driverSchool.cityAreaId == 3}">
+                <option th:value="1">朝阳县</option>
+                <option th:value="2">杜鹃路</option>
+                <option th:value="3" selected>石景山</option>
+                <option th:value="4">大兴区</option>
+            </select>
+            <select name="cityAreaId" lay-verify="required" lay-search="" th:if="${driverSchool.cityAreaId == 4}">
+                <option th:value="1">朝阳县</option>
+                <option th:value="2">杜鹃路</option>
+                <option th:value="3">石景山</option>
+                <option th:value="4" selected>大兴区</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">地址：</label>
+        <div class="layui-input-block">
+            <input type="text" name="address" lay-verify="movedate" autocomplete="off" class="layui-input" th:value="${driverSchool.address}" >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系电话：</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone" lay-verify="movedate" autocomplete="off" class="layui-input" th:value="${driverSchool.phone}" >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">修改</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['form','jquery','layer'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+        form.on('submit(demo1)', function (data) {
+            $.ajax({
+                url: '/school/updateDriverInfo',
+                type: 'put',
+                data: $("#formId").serialize(),
+                success: function (data) {
+                    alert(data)
+                },
+                error: function (res) {
+                    alert(res.status)
+                }
+
+            });
+        });
+
+    });
+</script>
+</body>
+</html>
